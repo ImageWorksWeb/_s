@@ -1,8 +1,11 @@
 
 
-ImageWorks starter theme based on _s.
+ImageWorks Starter Theme.
 ===
-** Features: ** 
+A base theme for Imageworks based on _s
+
+Features
+---------------
 
 * A just right amount of lean, well-commented, modern, HTML5 templates.
 * A helpful 404 template.
