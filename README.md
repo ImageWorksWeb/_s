@@ -25,8 +25,10 @@ Getting Started
 1. Download or clone this repo.
 2. Install the theme to your local dev server.
 3. Change the `proxyTarget: 'http://localsitehere.test'` setting in `./resources/compiler/config.js` to your dev site url.
-4. Install required modules with `yarn`.
-5. `yarn start` to launch live reload mode.
-6. `yarn build` to build theme for production.  (**`./assets` folder will be overwritten!**)
+4. Update the style.css file with the new template name and url.
+5. cd into resources directory: `cd /sites/site.test/wp-content/themes/yourthemename/resources`
+6. Install required modules with `yarn`.
+7. `yarn start` to launch live reload mode.
+8. `yarn build` to build theme for production.  (**`./assets` folder will be overwritten!**)
 
 Good luck!
