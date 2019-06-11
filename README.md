@@ -18,15 +18,15 @@ Note: `.no-sidebar` styles are not automatically loaded.
 * Smartly organized starter CSS in `style.css` that will help you to quickly get your design off the ground.
 * Full support for `WooCommerce plugin` integration with hooks in `inc/woocommerce.php`, styling override woocommerce.css with product gallery features (zoom, swipe, lightbox) enabled.
 * Licensed under GPLv2 or later. :) Use it to make something cool.
-* Webpack build tools
+* Webpack build tools.
 
 Getting Started
 ---------------
-
-Install required modules with `yarn`
-
-`yarn start` to launch live reload mode
-
-`yarn production` to build theme for production
+1. Download or clone this repo.
+2. Install the theme to your local dev server.
+3. Change the `proxyTarget: 'http://localsitehere.test'` setting in `./resources/compiler/config.js` to your dev site url.
+4. Install required modules with `yarn`.
+5. `yarn start` to launch live reload mode.
+6. `yarn build` to build theme for production.  (**`./assets` folder will be overwritten!**)
 
 Good luck!
