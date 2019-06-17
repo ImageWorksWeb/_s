@@ -79,12 +79,7 @@ module.exports = (options) => {
           extensions: 'js',
           includeSubfolders: true
         }),
-        new CleanWebpackPlugin([
-          path.resolve(outputFolder)
-        ], {
-          allowExternal: true,
-          beforeEmit: true
-        }),
+        
         new CopyWebpackPlugin([
           {
             from: path.resolve(`${context}/**/*`),

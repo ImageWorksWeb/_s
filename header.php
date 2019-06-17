@@ -21,10 +21,9 @@
 </head>
 
 <body <?php body_class(); ?>>
+<div class="dynamic-bg"><?php echo file_get_contents("assets/images/pavy-bg.svg", true); ?></div>
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'imageworks' ); ?></a>
-
-	<header id="masthead" class="site-header">
+<header id="masthead" class="site-header">
 		<div class="site-branding">
 			<?php
 			the_custom_logo();
@@ -42,7 +41,7 @@
 				?>
 				<p class="site-description"><?php echo $imageworks_description; /* WPCS: xss ok. */ ?></p>
 			<?php endif; ?>
-		</div><!-- .site-branding -->
+		</div>
 
 		<nav id="site-navigation" class="main-navigation">
 			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'imageworks' ); ?></button>
@@ -52,7 +51,7 @@
 				'menu_id'        => 'primary-menu',
 			) );
 			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+		</nav>
+</header>
 
-	<div id="content" class="site-content">
+	<div id="content" class="site-content test">

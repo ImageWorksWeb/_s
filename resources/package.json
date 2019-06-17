@@ -54,5 +54,8 @@
     "android >= 4.4",
     "bb >= 10",
     "not dead"
-  ]
+  ],
+  "dependencies": {
+    "scrollmagic": "^2.0.7"
+  }
 }

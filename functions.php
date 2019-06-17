@@ -120,11 +120,11 @@ add_action( 'widgets_init', 'imageworks_widgets_init' );
  * Enqueue scripts and styles.
  */
 function imageworks_scripts() {
-	wp_enqueue_style( ' imageworks-main-style', get_stylesheet_uri() . '/assets/styles/main.css' );
+	wp_enqueue_style( ' imageworks-main-style', get_template_directory_uri(). '/assets/styles/main.css' );
 
 	wp_enqueue_style( ' imageworks-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( ' imageworks-scripts', get_template_directory_uri() . '/assets/scripts/scripts.css', array(), true );
+	wp_enqueue_script( ' imageworks-scripts', get_template_directory_uri() . '/assets/scripts/main.js', array(), true );
 
 }
 add_action( 'wp_enqueue_scripts', 'imageworks_scripts' );
