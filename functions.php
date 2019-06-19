@@ -7,6 +7,20 @@
  * @package imageworks
  */
 
+
+// Clean up wordpres <head>
+remove_action('wp_head', 'rsd_link'); // remove really simple discovery link
+remove_action('wp_head', 'wp_generator'); // remove wordpress version
+remove_action('wp_head', 'feed_links', 2); // remove rss feed links (make sure you add them in yourself if youre using feedblitz or an rss service)
+remove_action('wp_head', 'feed_links_extra', 3); // removes all extra rss feed links
+remove_action('wp_head', 'index_rel_link'); // remove link to index page
+remove_action('wp_head', 'wlwmanifest_link'); // remove wlwmanifest.xml (needed to support windows live writer)
+remove_action('wp_head', 'start_post_rel_link', 10, 0); // remove random post link
+remove_action('wp_head', 'parent_post_rel_link', 10, 0); // remove parent post link
+remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0); // remove the next and previous post links
+remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
+
 if ( ! function_exists( 'imageworks_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -45,6 +59,10 @@ if ( ! function_exists( 'imageworks_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Primary', 'imageworks' ),
+		) );
+
+		register_nav_menus( array(
+			'panel' => esc_html__( 'Panel Menu', 'imageworks' ),
 		) );
 
 		/*
@@ -119,15 +137,31 @@ add_action( 'widgets_init', 'imageworks_widgets_init' );
 /**
  * Enqueue scripts and styles.
  */
-function imageworks_scripts() {
-	wp_enqueue_style( ' imageworks-main-style', get_template_directory_uri(). '/assets/styles/main.css' );
+add_action('wp_enqueue_scripts', function () {
+    $manifest = json_decode(file_get_contents('dist/assets.json', true));
+    $main = $manifest->main;
+    wp_enqueue_style('theme-css', get_template_directory_uri() . "/dist/" . $main->css,  false, null);
+    wp_enqueue_script('theme-js', get_template_directory_uri() . "/dist/" . $main->js, ['jquery'], null, true);
+}, 100);
 
-	wp_enqueue_style( ' imageworks-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( ' imageworks-scripts', get_template_directory_uri() . '/assets/scripts/main.js', array(), true );
 
+// Add page slug to body class, love this - Credit: Starkers Wordpress Theme
+function add_slug_to_body_class($classes) {
+    global $post;
+    if (is_home()) {
+        $key = array_search('blog', $classes);
+        if ($key > -1) {
+            unset($classes[$key]);
+        }
+    } elseif (is_page()) {
+        $classes[] = sanitize_html_class($post->post_name);
+    } elseif (is_singular()) {
+        $classes[] = sanitize_html_class($post->post_name);
+    }
+    return $classes;
 }
-add_action( 'wp_enqueue_scripts', 'imageworks_scripts' );
+
 
 /**
  * Implement the Custom Header feature.
